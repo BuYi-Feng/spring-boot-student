@@ -7,8 +7,6 @@ import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,7 +19,6 @@ import java.util.Map;
  * @author yuhao.wang
  */
 @Configuration
-@ConditionalOnBean({RabbitTemplate.class})
 public class RabbitConfig {
 
     /**
@@ -55,9 +52,12 @@ public class RabbitConfig {
     }
 
     public Queue queue(String name) {
-        Map<String, Object> args = new HashMap<>(2);
+        Map<String, Object> args = new HashMap<>();
+        // 设置死信队列
         args.put("x-dead-letter-exchange", RabbitConstants.MQ_EXCHANGE_DEAD_QUEUE);
         args.put("x-dead-letter-routing-key", RabbitConstants.MQ_ROUTING_KEY_DEAD_QUEUE);
+        // 设置消息的过期时间， 单位是毫秒
+        args.put("x-message-ttl", 5000);
 
         // 是否持久化
         boolean durable = true;

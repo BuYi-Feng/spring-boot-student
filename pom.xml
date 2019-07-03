@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
+		<version>1.5.13.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -40,6 +40,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
@@ -109,6 +115,16 @@
 		<module>spring-boot-student-guava-retrying</module>
 		<!-- Spring Boot spring-retry 重试机制 -->
 		<module>spring-boot-student-spring-retry</module>
+		<!-- Spring Boot 多级缓存测试 -->
+		<module>spring-boot-student-layering-cache</module>
+		<!-- Spring Boot hystrix -->
+		<module>spring-boot-student-hystrix</module>
+		<!-- Spring Boot CompletableFuture -->
+		<module>spring-boot-student-completable-future</module>
+		<!-- mybatis-plus  -->
+		<module>spring-boot-student-mybatis-plus</module>
+		<!-- 并发编程  -->
+		<module>spring-boot-student-concurrent</module>
     </modules>
 
 </project>
